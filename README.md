@@ -1,3 +1,3 @@
 # Go REST Server
 
-Learning Go by building a REST server to do a TODO application using PostgreSql.
+Learning Go by building a TODO REST server with PostgreSql.
