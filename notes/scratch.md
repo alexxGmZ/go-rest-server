@@ -11,6 +11,19 @@ CREATE TABLE Tasks (
    status VARCHAR(40) DEFAULT 'On-going',
    deadline TIMESTAMP,
    date_added TIMESTAMP DEFAULT NOW(),
+   archive BOOLEAN DEFAULT TRUE,
    PRIMARY KEY (task_id)
 );
 ```
+
+## Planned endpoints
+
+* GET /tasks
+* GET /tasks/:taskId
+* GET /archived
+* GET /late
+* GET /late/count
+* GET /count
+* PUT /update/:taskId
+* PATCH /archive/:taskId
+* DELETE /task/:taskId
