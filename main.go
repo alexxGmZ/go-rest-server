@@ -32,14 +32,15 @@ func main() {
 	}
 
 	router := gin.Default()
-	router.GET("/tasks", getToDos)
+	router.GET("/tasks", getTasks)
 	router.Run("localhost:8080")
 }
 
-func getToDos(c *gin.Context) {
+func getTasks(c *gin.Context) {
 	query := `
 		SELECT task_id, description, status, deadline, date_added
 		FROM Tasks
+		WHERE archive = FALSE
 	`
 
 	rows, err := db.Query(query)
