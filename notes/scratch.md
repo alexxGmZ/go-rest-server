@@ -18,12 +18,12 @@ CREATE TABLE Tasks (
 
 ## Planned endpoints
 
-* GET /tasks
-* GET /tasks/:taskId
-* GET /archived
-* GET /late
-* GET /late/count
-* GET /count
-* PUT /update/:taskId
-* PATCH /archive/:taskId
-* DELETE /task/:taskId
+* [x] GET /tasks
+* [x] GET /tasks/:taskId
+* [ ] GET /archived
+* [ ] GET /late
+* [ ] GET /late/count
+* [ ] GET /count
+* [ ] PUT /update/:taskId
+* [ ] PATCH /archive/:taskId
+* [ ] DELETE /task/:taskId
