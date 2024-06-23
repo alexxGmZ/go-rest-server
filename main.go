@@ -15,6 +15,9 @@ func main() {
 	}
 
 	router := gin.Default()
+
 	router.GET("/tasks", api.GetTasks)
+	router.GET("/tasks/:taskId", api.GetTaskById)
+
 	router.Run("localhost:8080")
 }
