@@ -3,17 +3,18 @@ package api
 import (
 	"database/sql"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"go_rest/utils"
 )
 
 type Task struct {
-	TaskID      int    `json:"task_id"`
-	Description string `json:"description"`
-	Status      string `json:"status"`
-	Deadline    string `json:"deadline"`
-	DateAdded   string `json:"date_added"`
+	TaskID      int       `json:"task_id"`
+	Description string    `json:"description"`
+	Status      string    `json:"status"`
+	Deadline    time.Time `json:"deadline"`
+	DateAdded   time.Time `json:"date_added"`
 }
 
 func GetTasks(c *gin.Context) {
