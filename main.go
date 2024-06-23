@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net"
 
 	"github.com/gin-gonic/gin"
 	"go_rest/api"
@@ -19,5 +20,24 @@ func main() {
 	router.GET("/tasks", api.GetTasks)
 	router.GET("/tasks/:taskId", api.GetTaskById)
 
-	router.Run("localhost:8080")
+	ip := getLocalIP()
+	router.Run(ip + ":8080")
+}
+
+func getLocalIP() string {
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		log.Println(err)
+		return "localhost"
+	}
+
+	for _, addr := range addrs {
+		if ipnet, ok := addr.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+			if ipnet.IP.To4() != nil {
+				return ipnet.IP.String()
+			}
+		}
+	}
+
+	return "localhost"
 }
