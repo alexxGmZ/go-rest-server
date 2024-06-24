@@ -37,13 +37,23 @@ func GetTasks(c *gin.Context) {
 	var tasks []Task
 	for rows.Next() {
 		var task Task
-		if err := rows.Scan(&task.TaskID, &task.Description, &task.Status, &task.Deadline, &task.DateAdded); err != nil {
+
+		err := rows.Scan(
+			&task.TaskID,
+			&task.Description,
+			&task.Status,
+			&task.Deadline,
+			&task.DateAdded,
+		)
+
+		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"message": "Failed to scan task",
 				"error":   err,
 			})
 			return
 		}
+
 		tasks = append(tasks, task)
 	}
 
