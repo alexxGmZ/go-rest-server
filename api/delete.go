@@ -21,6 +21,7 @@ func DeleteTask(c *gin.Context) {
 			"message": "Failed to delete task",
 			"error":   err,
 		})
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Task deleted successfully"})
