@@ -16,15 +16,3 @@ CREATE TABLE Tasks (
 );
 ```
 
-## Planned endpoints
-
-* [x] GET /tasks
-* [x] GET /tasks/:taskId
-* [ ] GET /archived
-* [ ] GET /late
-* [ ] GET /late/count
-* [ ] GET /count
-* [ ] PUT /update/:taskId
-* [ ] PATCH /archive/:taskId
-* [x] POST /task
-* [x] DELETE /task/:taskId
