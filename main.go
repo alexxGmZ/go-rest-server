@@ -19,6 +19,7 @@ func main() {
 	router.GET("/tasks", api.GetTasks)
 	router.GET("/tasks/:taskId", api.GetTaskById)
 	router.POST("/create", api.CreateTask)
+	router.DELETE("/task/:taskId", api.DeleteTask)
 
 	ip := utils.GetLocalIP()
 	router.Run(ip + ":8080")

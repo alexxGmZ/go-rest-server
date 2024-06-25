@@ -26,5 +26,5 @@ CREATE TABLE Tasks (
 * [ ] GET /count
 * [ ] PUT /update/:taskId
 * [ ] PATCH /archive/:taskId
-* [ ] POST /task
-* [ ] DELETE /task/:taskId
+* [x] POST /task
+* [x] DELETE /task/:taskId
