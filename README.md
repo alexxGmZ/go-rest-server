@@ -8,10 +8,10 @@ Learning Go by building a TODO REST server with PostgreSql.
 
 > These endpoint namings are subject to change for some clarity.
 
-* [x] GET /tasks
-* [x] GET /tasks/:taskId
+* [x] GET /task/all
+* [x] GET /task/:taskId
 * [ ] GET /archived
-* [ ] GET /late
+* [ ] GET /task/late
 * [ ] GET /late/count
 * [ ] GET /count
 * [ ] PUT /update/:taskId
