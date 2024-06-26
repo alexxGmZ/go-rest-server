@@ -21,7 +21,7 @@ func GetTasks(c *gin.Context) {
 	sqlQuery := `
 		SELECT task_id, description, status, deadline, date_added
 		FROM Tasks
-		WHERE archive = FALSE
+		WHERE deadline > NOW()
 	`
 
 	rows, err := utils.DB.Query(sqlQuery)
