@@ -68,6 +68,57 @@ func GetTasks(c *gin.Context) {
 	c.JSON(http.StatusOK, tasks)
 }
 
+func GetLateTasks(c *gin.Context) {
+	sqlQuery := `
+		SELECT task_id, description, status, deadline, date_added
+		FROM Tasks
+		WHERE deadline < NOW()
+	`
+
+	rows, err := utils.DB.Query(sqlQuery)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Failed to query tasks",
+			"error":   err,
+		})
+		return
+	}
+	defer rows.Close()
+
+	var lateTasks []Task
+	for rows.Next() {
+		var task Task
+
+		err := rows.Scan(
+			&task.TaskID,
+			&task.Description,
+			&task.Status,
+			&task.Deadline,
+			&task.DateAdded,
+		)
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{
+				"message": "Failed to scan task",
+				"error":   err,
+			})
+			return
+		}
+
+		lateTasks = append(lateTasks, task)
+	}
+
+	if err := rows.Err(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Error iterating through tasks",
+			"error":   err,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, lateTasks)
+}
+
 func GetTaskById(c *gin.Context) {
 	taskId := c.Param("taskId")
 	sqlQuery := `
