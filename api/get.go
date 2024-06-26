@@ -17,6 +17,8 @@ type Task struct {
 	DateAdded   time.Time `json:"date_added"`
 }
 
+// Retrieves a list of tasks from the database where the deadline is in the future.
+// It responds with a JSON array of tasks or an error message in case of a failure.
 func GetTasks(c *gin.Context) {
 	sqlQuery := `
 		SELECT task_id, description, status, deadline, date_added
@@ -68,6 +70,8 @@ func GetTasks(c *gin.Context) {
 	c.JSON(http.StatusOK, tasks)
 }
 
+// Retrieves a list of tasks from the database where the deadline has already passed.
+// It responds with a JSON array of late tasks or an error message in case of a failure.
 func GetLateTasks(c *gin.Context) {
 	sqlQuery := `
 		SELECT task_id, description, status, deadline, date_added
@@ -119,6 +123,10 @@ func GetLateTasks(c *gin.Context) {
 	c.JSON(http.StatusOK, lateTasks)
 }
 
+// Retrieves a task from the database by its ID, provided it is not archived.
+// Requires the "taskId" parameter in the endpoint. It responds with the task details
+// in JSON format or an error message if the task is not found or if there is a failure
+// in querying the database.
 func GetTaskById(c *gin.Context) {
 	taskId := c.Param("taskId")
 	sqlQuery := `

@@ -7,6 +7,8 @@ import (
 	"go_rest/utils"
 )
 
+// Deletes a task from the database by its ID. Requires the "taskId" parameter in the
+// endpoint. It responds with a success message or an error message in case of a failure.
 func DeleteTask(c *gin.Context) {
 	taskId := c.Param("taskId")
 

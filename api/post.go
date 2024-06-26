@@ -12,6 +12,12 @@ type NewTask struct {
 	Deadline    string `json:"deadline"`
 }
 
+// Creates a new task in the database. Requires a JSON request with the following format:
+// {
+//   "Description": "",
+//   "Deadline": ""
+// }
+// It responds with a success message or an error message in case of a failure.
 func CreateTask(c *gin.Context) {
 	var newTask NewTask
 
