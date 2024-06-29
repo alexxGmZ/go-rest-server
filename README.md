@@ -6,6 +6,7 @@ Learning Go by building a TODO REST server with PostgreSql.
 
 ## Planned endpoints
 
+> [!NOTE]
 > These endpoint namings are subject to change for some clarity.
 
 * [x] GET /task/all
@@ -15,6 +16,6 @@ Learning Go by building a TODO REST server with PostgreSql.
 * [ ] GET /late/count
 * [ ] GET /count
 * [ ] PUT /update/:taskId
-* [ ] PATCH /task/done/:taskId
-* [x] POST /task
+* [x] PATCH /task/done/:taskId
+* [x] POST /create
 * [x] DELETE /task/:taskId
