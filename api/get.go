@@ -24,6 +24,7 @@ func GetTasks(c *gin.Context) {
 		SELECT task_id, description, status, deadline, date_added
 		FROM Tasks
 		WHERE deadline > NOW()
+		AND archive = FALSE
 	`
 
 	rows, err := utils.DB.Query(sqlQuery)
@@ -77,6 +78,7 @@ func GetLateTasks(c *gin.Context) {
 		SELECT task_id, description, status, deadline, date_added
 		FROM Tasks
 		WHERE deadline < NOW()
+		AND archive = FALSE
 	`
 
 	rows, err := utils.DB.Query(sqlQuery)
