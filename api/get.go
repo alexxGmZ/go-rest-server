@@ -135,7 +135,6 @@ func GetTaskById(c *gin.Context) {
 		SELECT task_id, description, status, deadline, date_added
 		FROM Tasks
 		WHERE task_id = $1
-		AND archive = FALSE
 	`
 
 	row := utils.DB.QueryRow(sqlQuery, taskId)
