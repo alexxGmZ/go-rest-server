@@ -21,6 +21,8 @@ func main() {
 	router.GET("/task/late", api.GetLateTasks)
 	router.DELETE("/task/:taskId", api.DeleteTask)
 	router.PATCH("/task/done/:taskId", api.TaskDone)
+	router.PATCH("/task/archive/:taskId", api.ArchiveTask)
+	router.PATCH("/task/unarchive/:taskId", api.UnArchiveTask)
 	router.POST("/create", api.CreateTask)
 
 	ip := utils.GetLocalIP()
