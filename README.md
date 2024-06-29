@@ -17,7 +17,7 @@ Learning Go by building a TODO REST server with PostgreSql.
 * [ ] GET /count
 * [ ] PUT /update/:taskId
 * [x] PATCH /task/done/:taskId
-* [ ] PATCH /task/archive/:taskId
-* [ ] PATCH /task/unarchive/:taskId
+* [x] PATCH /task/archive/:taskId
+* [x] PATCH /task/unarchive/:taskId
 * [x] POST /create
 * [x] DELETE /task/:taskId
