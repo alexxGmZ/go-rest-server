@@ -2,13 +2,28 @@ package api
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"go_rest/utils"
 )
 
 func TaskDone(c *gin.Context) {
-	taskId := c.Param("taskId")
+	taskIdStr := c.Param("taskId")
+	taskIdInt, err := strconv.Atoi(taskIdStr)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Failed to convert int to string",
+			"error":   err,
+		})
+		return
+	}
+
+	if !utils.VerifyTask(taskIdInt) {
+		c.JSON(http.StatusNotFound, gin.H{"message": "Task not found"})
+		return
+	}
 
 	sqlQuery := `
 		UPDATE Tasks
@@ -17,7 +32,7 @@ func TaskDone(c *gin.Context) {
 		WHERE task_id = $1
 	`
 
-	_, err := utils.DB.Exec(sqlQuery, taskId)
+	_, err = utils.DB.Exec(sqlQuery, taskIdInt)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Failed to archive task",
