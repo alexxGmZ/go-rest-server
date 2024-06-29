@@ -9,6 +9,8 @@ type Task struct {
 	TaskId int
 }
 
+// Verifies if a task exists in the database by its ID. Returns true if the task exists,
+// otherwise returns false.
 func VerifyTask(taskId int) bool {
 	fmt.Printf("VerifyTask(%d)\n", taskId)
 
