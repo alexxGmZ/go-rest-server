@@ -8,6 +8,9 @@ import (
 	"go_rest/utils"
 )
 
+// Marks a task as done and archives it in the database by its ID.
+// Requires the "taskId" parameter in the endpoint. It responds with a success message
+// or an error message in case of a failure.
 func TaskDone(c *gin.Context) {
 	taskIdStr := c.Param("taskId")
 	taskIdInt, err := strconv.Atoi(taskIdStr)
