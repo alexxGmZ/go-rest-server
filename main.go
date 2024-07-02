@@ -16,8 +16,9 @@ func main() {
 
 	router := gin.Default()
 
-	router.GET("/tasks/all", api.GetTasks)
 	router.GET("/task/:taskId", api.GetTaskById)
+	router.GET("/tasks/all", api.GetTasks)
+	router.GET("/tasks/archived", api.GetArchivedTasks)
 	router.GET("/tasks/late", api.GetLateTasks)
 
 	router.DELETE("/task/:taskId", api.DeleteTask)
