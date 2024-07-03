@@ -27,42 +27,11 @@ func GetTasks(c *gin.Context) {
 		AND archive = FALSE
 	`
 
-	rows, err := utils.DB.Query(sqlQuery)
+	tasks, err := queryTasks(sqlQuery)
+
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Failed to query tasks",
-			"error":   err,
-		})
-		return
-	}
-	defer rows.Close()
-
-	var tasks []Task
-	for rows.Next() {
-		var task Task
-
-		err := rows.Scan(
-			&task.TaskID,
-			&task.Description,
-			&task.Status,
-			&task.Deadline,
-			&task.DateAdded,
-		)
-
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{
-				"message": "Failed to scan task",
-				"error":   err,
-			})
-			return
-		}
-
-		tasks = append(tasks, task)
-	}
-
-	if err := rows.Err(); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": "Error iterating through tasks",
 			"error":   err,
 		})
 		return
@@ -81,42 +50,11 @@ func GetLateTasks(c *gin.Context) {
 		AND archive = FALSE
 	`
 
-	rows, err := utils.DB.Query(sqlQuery)
+	lateTasks, err := queryTasks(sqlQuery)
+
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Failed to query tasks",
-			"error":   err,
-		})
-		return
-	}
-	defer rows.Close()
-
-	var lateTasks []Task
-	for rows.Next() {
-		var task Task
-
-		err := rows.Scan(
-			&task.TaskID,
-			&task.Description,
-			&task.Status,
-			&task.Deadline,
-			&task.DateAdded,
-		)
-
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{
-				"message": "Failed to scan task",
-				"error":   err,
-			})
-			return
-		}
-
-		lateTasks = append(lateTasks, task)
-	}
-
-	if err := rows.Err(); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": "Error iterating through tasks",
 			"error":   err,
 		})
 		return
@@ -172,46 +110,48 @@ func GetArchivedTasks(c *gin.Context) {
       WHERE archive = TRUE
    `
 
-	rows, err := utils.DB.Query(sqlQuery)
+	tasks, err := queryTasks(sqlQuery)
+
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": "Failed to query tasks",
-			"error":   err,
-		})
-		return
-	}
-	defer rows.Close()
-
-	var tasks []Task
-	for rows.Next() {
-		var task Task
-
-		err := rows.Scan(
-			&task.TaskID,
-			&task.Description,
-			&task.Status,
-			&task.Deadline,
-			&task.DateAdded,
-		)
-
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{
-				"message": "Failed to scan task",
-				"error":   err,
-			})
-			return
-		}
-
-		tasks = append(tasks, task)
-	}
-
-	if err := rows.Err(); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": "Error iterating through tasks",
+			"message": "Failed to query task",
 			"error":   err,
 		})
 		return
 	}
 
 	c.JSON(http.StatusOK, tasks)
+}
+
+// Executes a given SQL query to retrieve tasks from the database.
+// Returns a slice of Task objects and an error if the query fails or if there
+// is an issue iterating through the result set.
+func queryTasks(sqlQuery string) ([]Task, error) {
+	rows, err := utils.DB.Query(sqlQuery)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var tasks []Task
+	for rows.Next() {
+		var task Task
+		err = rows.Scan(
+			&task.TaskID,
+			&task.Description,
+			&task.Status,
+			&task.Deadline,
+			&task.DateAdded,
+		)
+		if err != nil {
+			return nil, err
+		}
+		tasks = append(tasks, task)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return tasks, nil
 }
