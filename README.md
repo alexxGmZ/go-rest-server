@@ -12,7 +12,7 @@ Learning Go by building a TODO REST server with PostgreSql.
 * [x] GET /tasks/all
 * [x] GET /task/:taskId
 * [x] GET /tasks/late
-* [ ] GET /archived
+* [x] GET /tasks/archived
 * [ ] GET /late/count
 * [ ] GET /count
 * [ ] PUT /update/:taskId
