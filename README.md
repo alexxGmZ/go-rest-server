@@ -9,15 +9,15 @@ Learning Go by building a TODO REST server with PostgreSql.
 > [!NOTE]
 > These endpoint namings are subject to change for some clarity.
 
-* [x] GET /tasks/all
 * [x] GET /task/:taskId
-* [x] GET /tasks/late
+* [x] GET /tasks/all
 * [x] GET /tasks/archived
+* [x] GET /tasks/late
 * [ ] GET /late/count
 * [ ] GET /count
-* [ ] PUT /update/:taskId
+* [x] DELETE /task/:taskId
 * [x] PATCH /task/done/:taskId
 * [x] PATCH /task/archive/:taskId
 * [x] PATCH /task/unarchive/:taskId
 * [x] POST /create
-* [x] DELETE /task/:taskId
+* [ ] PUT /update/:taskId
