@@ -29,6 +29,8 @@ func main() {
 
 	router.POST("/create", api.CreateTask)
 
+   router.PUT("/task/update", api.UpdateSpecificTask)
+
 	ip := utils.GetLocalIP()
 	router.Run(ip + ":8080")
 }
