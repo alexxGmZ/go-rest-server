@@ -155,3 +155,27 @@ func queryTasks(sqlQuery string) ([]Task, error) {
 
 	return tasks, nil
 }
+
+// Counts all active tasks in the database where the deadline is in the future and the
+// task is not archived. Responds with the task count or an error message in case of a
+// failure.
+func CountAllTasks(c *gin.Context) {
+	sqlQuery := `
+		SELECT COUNT(*) FROM Tasks
+		WHERE deadline > NOW()
+		AND archive = FALSE
+	`
+
+	var taskCount int
+	row := utils.DB.QueryRow(sqlQuery)
+	err := row.Scan(&taskCount)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Failed to count tasks",
+			"error":   err,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, taskCount)
+}
