@@ -179,3 +179,27 @@ func CountAllTasks(c *gin.Context) {
 
 	c.JSON(http.StatusOK, taskCount)
 }
+
+// Counts all late tasks in the database where the deadline has passed and the task
+// is not archived. Responds with the count of late tasks or an error message in case of a
+// failure.
+func CountAllLateTasks(c *gin.Context) {
+	sqlQuery := `
+		SELECT COUNT(*) FROM Tasks
+		WHERE deadline < NOW()
+		AND archive = FALSE
+	`
+
+	var lateTaskCount int
+	row := utils.DB.QueryRow(sqlQuery)
+	err := row.Scan(&lateTaskCount)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Failed to count tasks",
+			"error":   err,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, lateTaskCount)
+}

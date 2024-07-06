@@ -21,6 +21,7 @@ func main() {
 	router.GET("/tasks/archived", api.GetArchivedTasks)
 	router.GET("/tasks/count", api.CountAllTasks)
 	router.GET("/tasks/late", api.GetLateTasks)
+	router.GET("/tasks/late/count", api.CountAllLateTasks)
 
 	router.DELETE("/task/:taskId", api.DeleteTask)
 
