@@ -131,13 +131,77 @@ StatusInternalServerError
 
 ### GET /tasks/count
 
+Counts all active tasks in the database where the deadline is in the future and the
+task is not archived. Responds with the task count or an error message in case of a
+failure.
+
+**Response:**
+
+StatusOk
+```
+[Integer]
+```
+
+StatusInternalServerError
+```json
+{
+  "message": "Failed to query task",
+  "error":   "Error object",
+}
+```
+
 <br>
 
 ### GET /tasks/late
 
+Retrieves a list of tasks from the database where the deadline has already passed.
+It responds with a JSON array of late tasks or an error message in case of a failure.
+
+**Response:**
+
+StatusOk
+```json
+[
+  {
+    "task_id": 9,
+    "description": "love them all",
+    "status": "On-going",
+    "deadline": "2024-02-14T00:00:00Z",
+    "date_added": "2024-06-29T19:03:20.884892Z"
+  }
+]
+```
+
+StatusInternalServerError
+```json
+{
+  "message": "Failed to query task",
+  "error":   "Error object",
+}
+```
+
 <br>
 
 ### GET /tasks/late/count
+
+Counts all late tasks in the database where the deadline has passed and the task
+is not archived. Responds with the count of late tasks or an error message in case of a
+failure.
+
+**Response:**
+
+StatusOk
+```
+[Integer]
+```
+
+StatusInternalServerError
+```json
+{
+  "message": "Failed to query task",
+  "error":   "Error object",
+}
+```
 
 <br>
 
