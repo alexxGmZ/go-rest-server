@@ -339,6 +339,38 @@ StatusInternalServerError
 <br>
 
 ### POST /create
+Creates a new task in the database. It responds with a success message or an error message
+in case of a failure.
+
+**Request:**
+
+```json
+{
+  "description": "",
+  "deadline": ""
+}
+```
+
+**Response:**
+
+StatusOk
+```json
+{ "message": "Task created successfully" }
+```
+
+StatusInternalServerError
+```json
+{
+  "message": "Failed to bind JSON",
+  "error":   "Error object",
+}
+```
+```json
+{
+  "message": "Failed to create task",
+  "error":   "Error object",
+}
+```
 
 <br>
 
