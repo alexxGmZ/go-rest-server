@@ -339,6 +339,7 @@ StatusInternalServerError
 <br>
 
 ### POST /create
+
 Creates a new task in the database. It responds with a success message or an error message
 in case of a failure.
 
@@ -376,5 +377,44 @@ StatusInternalServerError
 
 ### PUT /task/update
 
+Updates a specific task in the database based on the provided JSON request format.
+The task to update is identified implicitly from the context of the request body.
+Responds with a success message or an error message in case of a failure.
+
+**Request:**
+
+```json
+{
+  "task_id": 10,
+  "description": "new year",
+  "deadline": "2024-01-01"
+}
+```
+
+**Response:**
+
+StatusOk
+```json
+{ "message": "Task updated successfully" }
+```
+
+StatusNotFound
+```json
+{ "message": "Task not found" }
+```
+
+StatusInternalServerError
+```json
+{
+  "message": "Failed to bind JSON",
+  "error":   "Error object",
+}
+```
+```json
+{
+  "message": "Failed to update task",
+  "error":   "Error object",
+}
+```
 <br>
 
