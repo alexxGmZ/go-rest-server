@@ -240,13 +240,101 @@ StatusInternalServerError
 
 ### PATCH /task/done/:taskId
 
+Marks a task as done and archives it in the database by its ID.
+Requires the "**taskId**" parameter in the endpoint. It responds with a success message
+or an error message in case of a failure.
+
+**Response:**
+
+StatusOk
+```json
+{ "message": "Task archived successfully" }
+```
+
+StatusNotFound
+```json
+{ "message": "Task not found" }
+```
+
+StatusInternalServerError
+```json
+{
+  "message": "Failed to convert int to string",
+  "error":   "Error object",
+}
+```
+```json
+{
+  "message": "Failed to archive task",
+  "error":   "Error object",
+}
+```
+
 <br>
 
 ### PATCH /task/archive/:taskId
 
+Archives a task in the database by its ID. Requires the "**taskId**" parameter in the
+endpoint. It responds with a success message or an error message in case of a failure.
+
+**Response:**
+
+StatusOk
+```json
+{ "message": "Task archived successfully" }
+```
+
+StatusNotFound
+```json
+{ "message": "Task not found" }
+```
+
+StatusInternalServerError
+```json
+{
+  "message": "Failed to convert int to string",
+  "error":   "Error object",
+}
+```
+```json
+{
+  "message": "Failed to archive task",
+  "error":   "Error object",
+}
+```
+
 <br>
 
 ### PATCH /task/unarchive/:taskId
+
+Unarchives a task in the database by its ID. Requires the "**taskId**" parameter in the
+endpoint. It responds with a success message or an error message in case of a failure.
+
+**Response:**
+
+StatusOk
+```json
+{ "message": "Task unarchived successfully" }
+```
+
+StatusNotFound
+```json
+{ "message": "Task not found" }
+```
+
+StatusInternalServerError
+```json
+{
+  "message": "Failed to convert int to string",
+  "error":   "Error object",
+}
+```
+```json
+{
+  "message": "Failed to unarchive task",
+  "error":   "Error object",
+}
+```
 
 <br>
 
