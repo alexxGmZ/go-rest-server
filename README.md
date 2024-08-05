@@ -207,6 +207,35 @@ StatusInternalServerError
 
 ### DELETE /task/:taskId
 
+Deletes a task from the database by its ID. Requires the "**taskId**" parameter in the
+endpoint. It responds with a success message or an error message in case of a failure.
+
+**Response:**
+
+StatusOk
+```json
+{ "message": "Task deleted successfully" }
+```
+
+StatusNotFound
+```json
+{ "message": "Task not found" }
+```
+
+StatusInternalServerError
+```json
+{
+  "message": "Failed to convert int to string",
+  "error":   "Error object",
+}
+```
+```json
+{
+  "message": "Failed to delete task",
+  "error":   "Error object",
+}
+```
+
 <br>
 
 ### PATCH /task/done/:taskId
