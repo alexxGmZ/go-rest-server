@@ -112,7 +112,7 @@ func UnArchiveTask(c *gin.Context) {
 	_, err = utils.DB.Exec(sqlQuery, taskIdInt)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": "Failed to archive task",
+			"message": "Failed to unarchive task",
 			"error":   err,
 		})
 		return
