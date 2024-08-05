@@ -9,7 +9,7 @@ Learning Go by building a TODO REST server with PostgreSql.
 ### GET /task/:taskId
 
 Retrieves a task from the database by its ID, provided it is not archived.
-Requires the "taskId" parameter in the endpoint. It responds with the task details
+Requires the "**taskId**" parameter in the endpoint. It responds with the task details
 in JSON format or an error message if the task is not found or if there is a failure
 in querying the database.
 
