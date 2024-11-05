@@ -4,6 +4,33 @@ Learning Go by building a TODO REST server with PostgreSql.
 
 <br>
 
+## Database
+
+**db name:** go_todo
+
+table/s:
+
+```sql
+CREATE TABLE Tasks (
+   task_id SERIAL,
+   description TEXT NOT NULL,
+   status VARCHAR(40) DEFAULT 'On-going',
+   deadline TIMESTAMP,
+   date_added TIMESTAMP DEFAULT NOW(),
+   archive BOOLEAN DEFAULT FALSE,
+   PRIMARY KEY (task_id)
+);
+```
+
+<br>
+
+## Environment Variable/s
+
+* `POSTGRESURL` - database URL.
+   - example: `postgresql://user:password@host/db_name`
+
+<br>
+
 ## Endpoints
 
 ### GET /task/:taskId
