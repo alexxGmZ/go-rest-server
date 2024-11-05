@@ -11,7 +11,7 @@ CREATE TABLE Tasks (
    status VARCHAR(40) DEFAULT 'On-going',
    deadline TIMESTAMP,
    date_added TIMESTAMP DEFAULT NOW(),
-   archive BOOLEAN DEFAULT TRUE,
+   archive BOOLEAN DEFAULT FALSE,
    PRIMARY KEY (task_id)
 );
 ```
