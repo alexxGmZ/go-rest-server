@@ -13,10 +13,12 @@ type NewTask struct {
 }
 
 // Creates a new task in the database. Requires a JSON request with the following format:
-// {
-//   "Description": "",
-//   "Deadline": ""
-// }
+//
+//	{
+//	  "Description": "",
+//	  "Deadline": ""
+//	}
+//
 // It responds with a success message or an error message in case of a failure.
 func CreateTask(c *gin.Context) {
 	var newTask NewTask
@@ -38,10 +40,10 @@ func CreateTask(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Failed to create task",
-			"error": err,
+			"error":   err,
 		})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{ "message": "Task created successfully" })
+	c.JSON(http.StatusOK, gin.H{"message": "Task created successfully"})
 }

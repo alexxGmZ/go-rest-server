@@ -12,7 +12,7 @@ import (
 // endpoint. It responds with a success message or an error message in case of a failure.
 func DeleteTask(c *gin.Context) {
 	taskIdStr := c.Param("taskId")
-   taskIdInt, err := strconv.Atoi(taskIdStr)
+	taskIdInt, err := strconv.Atoi(taskIdStr)
 
 	sqlQuery := `
 		DELETE FROM Tasks

@@ -120,4 +120,3 @@ func UnArchiveTask(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"message": "Task unarchived successfully"})
 }
-
