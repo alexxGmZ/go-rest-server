@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+   "os"
 
 	"github.com/gin-gonic/gin"
 	"go_rest/api"
@@ -34,5 +35,5 @@ func main() {
 	router.PUT("/task/update", api.UpdateSpecificTask)
 
 	ip := utils.GetLocalIP()
-	router.Run(ip + ":8080")
+   router.Run(ip + ":" + os.Getenv("PORT"))
 }
