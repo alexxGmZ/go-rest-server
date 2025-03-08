@@ -28,6 +28,7 @@ CREATE TABLE Tasks (
 
 * `POSTGRESURL` - database URL.
   - example: `postgresql://user:password@host/db_name`
+* `PORT` - Server Port.
 
 <br>
 
